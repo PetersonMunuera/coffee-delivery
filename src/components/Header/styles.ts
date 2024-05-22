@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
   background-color: ${(props) => props.theme.background};
 `
