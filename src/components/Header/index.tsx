@@ -8,6 +8,9 @@ import { CartContext } from '../../contexts/CartContext'
 export function Header() {
   const { cartProducts } = useContext(CartContext)
 
+  const numberOfProducts = cartProducts.length
+  const isCartEmpty = !numberOfProducts
+
   return (
     <HeaderContainer>
       <HeaderContent>
@@ -20,8 +23,8 @@ export function Header() {
             <MapPin size={22} weight="fill" />
             Porto Alegre, RS
           </span>
-          <NavLink to="/checkout">
-            {!!cartProducts.length && <span>{cartProducts.length}</span>}
+          <NavLink to={!isCartEmpty ? '/checkout' : '/'}>
+            {!isCartEmpty && <span>{numberOfProducts}</span>}
             <ShoppingCart size={22} weight="fill" />
           </NavLink>
         </nav>

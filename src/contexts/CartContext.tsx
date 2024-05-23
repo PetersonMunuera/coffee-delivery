@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useEffect, useState } from 'react'
+import { ReactNode, createContext, useState } from 'react'
 import { Product } from '../@types/product'
 
 export interface CartProduct extends Product {
@@ -19,10 +19,6 @@ interface CartContextProviderProps {
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cartProducts, setCartProducts] = useState<CartProduct[]>([])
-
-  useEffect(() => {
-    console.log(cartProducts)
-  }, [cartProducts])
 
   function addProductToCart(product: CartProduct) {
     const productAlredyAdded = cartProducts.find(
