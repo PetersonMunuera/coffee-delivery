@@ -103,3 +103,34 @@ export const AddressForm = styled.form`
     }
   }
 `
+
+export const SelectPayment = styled.div`
+  display: flex;
+  gap: 0.75rem;
+
+  button {
+    flex: 1;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+
+    background-color: ${(props) => props.theme['base-button']};
+    border: 0;
+    border-radius: 6px;
+    padding: 1rem;
+
+    font-size: 0.75rem;
+    line-height: 1.6;
+
+    transition: background 0.1s linear;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: ${(props) => props.theme['base-hover']};
+  }
+
+  button svg {
+    color: ${(props) => props.theme.purple};
+  }
+`

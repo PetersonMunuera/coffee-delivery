@@ -10,6 +10,7 @@ import {
   AddressForm,
   CheckoutContainer,
   PaymentCard,
+  SelectPayment,
 } from './styles'
 
 export function Checkout() {
@@ -49,17 +50,17 @@ export function Checkout() {
             </div>
           </header>
 
-          <div>
+          <SelectPayment>
             <button>
-              <CreditCard /> CARTÃO DE CRÉDITO
+              <CreditCard size={16} /> CARTÃO DE CRÉDITO
             </button>
             <button>
-              <Bank /> CARTÃO DE DÉBITO
+              <Bank size={16} /> CARTÃO DE DÉBITO
             </button>
             <button>
-              <Money /> DINHEIRO
+              <Money size={16} /> DINHEIRO
             </button>
-          </div>
+          </SelectPayment>
         </PaymentCard>
       </section>
 
