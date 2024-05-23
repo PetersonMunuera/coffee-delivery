@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ProductItemContainer = styled.article`
   background-color: ${(props) => props.theme['base-card']};
-  border-radius: 0 36px 0 36px;
+  border-radius: 6px 36px 6px 36px;
   padding: 1.25rem;
   text-align: center;
 
