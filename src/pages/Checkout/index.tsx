@@ -7,6 +7,8 @@ import {
   Money,
 } from '@phosphor-icons/react'
 
+import InputMask from 'react-input-mask'
+
 import {
   AddressCard,
   AddressForm,
@@ -38,7 +40,7 @@ export function Checkout() {
           </header>
 
           <AddressForm>
-            <input type="text" placeholder="CEP" />
+            <InputMask mask="99999-999" placeholder="CEP" />
             <input type="text" placeholder="Rua" />
             <input type="text" placeholder="Número" />
             <input type="text" placeholder="Complemento" />
