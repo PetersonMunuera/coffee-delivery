@@ -18,25 +18,6 @@ export const CoffeeItem = styled.article`
     margin-top: -2.5rem;
   }
 
-  div {
-    margin-top: 0.75rem;
-  }
-
-  div span {
-    background-color: ${(props) => props.theme['yellow-light']};
-    padding: 0.25rem 0.5rem;
-    border-radius: 9999px;
-
-    color: ${(props) => props.theme['yellow-dark']};
-    font-weight: bold;
-    font-size: 0.625rem;
-    line-height: 1.3;
-
-    & + span {
-      margin-left: 0.25rem;
-    }
-  }
-
   h3 {
     font-family: 'Baloo 2';
     font-size: 1.25rem;
@@ -50,6 +31,25 @@ export const CoffeeItem = styled.article`
     font-size: 0.875rem;
     line-height: 1.3;
     color: ${(props) => props.theme['base-label']};
+  }
+`
+
+export const Tags = styled.div`
+  margin-top: 0.75rem;
+
+  span {
+    background-color: ${(props) => props.theme['yellow-light']};
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+
+    color: ${(props) => props.theme['yellow-dark']};
+    font-weight: bold;
+    font-size: 0.625rem;
+    line-height: 1.3;
+
+    & + span {
+      margin-left: 0.25rem;
+    }
   }
 `
 
@@ -74,16 +74,7 @@ export const AddToCart = styled.footer`
     display: flex;
     gap: 0.5rem;
 
-    input {
-      width: 4.5rem;
-      border: 0;
-      border-radius: 6px;
-      padding: 0.5rem;
-      background-color: ${(props) => props.theme['base-button']};
-      text-align: center;
-    }
-
-    button {
+    & > button {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -99,8 +90,53 @@ export const AddToCart = styled.footer`
       transition: background 0.1s linear;
     }
 
-    button:hover {
+    & > button:hover {
       background-color: ${(props) => props.theme.purple};
     }
+  }
+`
+
+export const AmountInput = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 4.5rem;
+  border: 0;
+  border-radius: 6px;
+  padding: 0.5rem;
+  background-color: ${(props) => props.theme['base-button']};
+
+  input {
+    background-color: transparent;
+    border: 0;
+    width: 1.25rem;
+    text-align: center;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-inner-spin-button,
+  input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input {
+    -moz-appearance: textfield;
+  }
+
+  button {
+    width: 0.875rem;
+    height: 0.875rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    color: ${(props) => props.theme.purple};
+    border: 0;
+    cursor: pointer;
   }
 `

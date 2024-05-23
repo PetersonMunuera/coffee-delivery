@@ -1,5 +1,11 @@
-import { ShoppingCart } from '@phosphor-icons/react'
-import { AddToCart, CoffeeItem, ProductsListContainer } from './styles'
+import { Minus, Plus, ShoppingCart } from '@phosphor-icons/react'
+import {
+  AddToCart,
+  AmountInput,
+  CoffeeItem,
+  ProductsListContainer,
+  Tags,
+} from './styles'
 import { products } from './products.data'
 
 export function ProductsList() {
@@ -10,11 +16,11 @@ export function ProductsList() {
           <li key={product.img}>
             <CoffeeItem>
               <img src={product.img} alt={`Xícara de café ${product.name}`} />
-              <div>
+              <Tags>
                 {product.tags.map((tag) => (
                   <span key={tag}>{tag.toUpperCase()}</span>
                 ))}
-              </div>
+              </Tags>
               <h3>{product.name}</h3>
               <p>{product.description}</p>
               <AddToCart>
@@ -23,7 +29,15 @@ export function ProductsList() {
                 </span>
 
                 <form>
-                  <input type="number" />
+                  <AmountInput>
+                    <button type="button">
+                      <Minus size={14} />
+                    </button>
+                    <input type="number" min={1} defaultValue={1} />
+                    <button type="button">
+                      <Plus size={14} />
+                    </button>
+                  </AmountInput>
                   <button type="submit">
                     <ShoppingCart size={22} weight="fill" />
                   </button>
