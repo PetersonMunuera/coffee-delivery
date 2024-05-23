@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Bank,
   CreditCard,
@@ -5,15 +6,23 @@ import {
   MapPinLine,
   Money,
 } from '@phosphor-icons/react'
+
 import {
   AddressCard,
   AddressForm,
   CheckoutContainer,
   PaymentCard,
-  SelectPayment,
+  SelectPaymentContainer,
+  SelectPaymentButton,
 } from './styles'
 
+type PaymentMethodsType = 'CREDIT_CARD' | 'DEBIT_CARD' | 'MONEY'
+
 export function Checkout() {
+  const [paymentMethod, setPaymentMethod] = useState<
+    PaymentMethodsType | undefined
+  >(undefined)
+
   return (
     <CheckoutContainer>
       <section>
@@ -50,17 +59,26 @@ export function Checkout() {
             </div>
           </header>
 
-          <SelectPayment>
-            <button>
+          <SelectPaymentContainer>
+            <SelectPaymentButton
+              isSelected={paymentMethod === 'CREDIT_CARD'}
+              onClick={() => setPaymentMethod('CREDIT_CARD')}
+            >
               <CreditCard size={16} /> CARTÃO DE CRÉDITO
-            </button>
-            <button>
+            </SelectPaymentButton>
+            <SelectPaymentButton
+              isSelected={paymentMethod === 'DEBIT_CARD'}
+              onClick={() => setPaymentMethod('DEBIT_CARD')}
+            >
               <Bank size={16} /> CARTÃO DE DÉBITO
-            </button>
-            <button>
+            </SelectPaymentButton>
+            <SelectPaymentButton
+              isSelected={paymentMethod === 'MONEY'}
+              onClick={() => setPaymentMethod('MONEY')}
+            >
               <Money size={16} /> DINHEIRO
-            </button>
-          </SelectPayment>
+            </SelectPaymentButton>
+          </SelectPaymentContainer>
         </PaymentCard>
       </section>
 

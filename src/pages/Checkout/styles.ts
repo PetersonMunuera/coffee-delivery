@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const CheckoutContainer = styled.main`
   max-width: 70rem;
@@ -80,6 +80,10 @@ export const AddressForm = styled.form`
     font-size: 0.875rem;
     line-height: 1.3;
 
+    &:focus {
+      box-shadow: 0 0 0 2px ${(props) => props.theme.yellow};
+    }
+
     &:nth-of-type(1) {
       grid-area: zip;
     }
@@ -104,33 +108,48 @@ export const AddressForm = styled.form`
   }
 `
 
-export const SelectPayment = styled.div`
+export const SelectPaymentContainer = styled.div`
   display: flex;
   gap: 0.75rem;
+`
 
-  button {
-    flex: 1;
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
+interface SelectPaymentButtonProps {
+  isSelected: boolean
+}
 
-    background-color: ${(props) => props.theme['base-button']};
-    border: 0;
-    border-radius: 6px;
-    padding: 1rem;
+export const SelectPaymentButton = styled.button<SelectPaymentButtonProps>`
+  flex: 1;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
 
-    font-size: 0.75rem;
-    line-height: 1.6;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 1rem;
 
-    transition: background 0.1s linear;
-    cursor: pointer;
-  }
+  font-size: 0.75rem;
+  line-height: 1.6;
 
-  button:hover {
-    background-color: ${(props) => props.theme['base-hover']};
-  }
+  transition: background 0.1s linear;
+  cursor: pointer;
 
-  button svg {
+  ${(props) => {
+    return props.isSelected
+      ? css`
+          background-color: ${props.theme['purple-light']};
+          border-color: ${props.theme.purple};
+          color: ${props.theme.purple};
+        `
+      : css`
+          background-color: ${props.theme['base-button']};
+
+          &:hover {
+            background-color: ${(props) => props.theme['base-hover']};
+          }
+        `
+  }}
+
+  svg {
     color: ${(props) => props.theme.purple};
   }
 `
