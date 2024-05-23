@@ -1,14 +1,6 @@
 import styled from 'styled-components'
 
-export const ProductsListContainer = styled.ul`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 2.5rem 2rem;
-  margin-top: 3.5rem;
-  list-style: none;
-`
-
-export const CoffeeItem = styled.article`
+export const ProductItemContainer = styled.article`
   background-color: ${(props) => props.theme['base-card']};
   border-radius: 0 36px 0 36px;
   padding: 1.25rem;
@@ -138,5 +130,9 @@ export const AmountInput = styled.div`
     color: ${(props) => props.theme.purple};
     border: 0;
     cursor: pointer;
+  }
+
+  button:hover {
+    color: ${(props) => props.theme['purple-dark']};
   }
 `

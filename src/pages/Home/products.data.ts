@@ -1,4 +1,12 @@
-export const products = [
+export interface Product {
+  img: string
+  tags: string[]
+  name: string
+  description: string
+  price: number
+}
+
+export const products: Product[] = [
   {
     img: 'expresso-tradicional.png',
     tags: ['tradicional'],

@@ -81,4 +81,12 @@ export const CoffeeSection = styled.section`
     line-height: 1.3;
     color: ${(props) => props.theme['base-subtitle']};
   }
+
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2.5rem 2rem;
+    margin-top: 3.5rem;
+    list-style: none;
+  }
 `

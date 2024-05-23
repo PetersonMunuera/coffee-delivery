@@ -7,7 +7,8 @@ import {
   Benefit,
   CoffeeSection,
 } from './styles'
-import { ProductsList } from './components/ProductsList'
+import { ProductItem } from './components/ProductItem'
+import { products } from './products.data'
 
 export function Home() {
   return (
@@ -56,7 +57,15 @@ export function Home() {
       <CoffeeSection>
         <h2>Nossos cafés</h2>
 
-        <ProductsList />
+        <ul>
+          {products.map((product) => {
+            return (
+              <li key={product.img}>
+                <ProductItem product={product} />
+              </li>
+            )
+          })}
+        </ul>
       </CoffeeSection>
     </main>
   )
