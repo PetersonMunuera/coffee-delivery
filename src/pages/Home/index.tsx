@@ -60,7 +60,7 @@ export function Home() {
         <ul>
           {products.map((product) => {
             return (
-              <li key={product.img}>
+              <li key={product.id}>
                 <ProductItem product={product} />
               </li>
             )

@@ -1,9 +1,12 @@
 import { Minus, Plus, ShoppingCart } from '@phosphor-icons/react'
 import { AddToCart, AmountInput, ProductItemContainer, Tags } from './styles'
-import { Product } from '../../products.data'
+import { Product } from '../../../../@types/product'
+
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import zod from 'zod'
+import { useContext } from 'react'
+import { CartContext, CartProduct } from '../../../../contexts/CartContext'
 
 interface ProductItemProps {
   product: Product
@@ -16,7 +19,7 @@ const addToCartFormSchema = zod.object({
 type AddToCartFormData = zod.infer<typeof addToCartFormSchema>
 
 export function ProductItem({ product }: ProductItemProps) {
-  const { register, handleSubmit, setValue, watch } =
+  const { register, handleSubmit, setValue, watch, reset } =
     useForm<AddToCartFormData>({
       resolver: zodResolver(addToCartFormSchema),
       defaultValues: {
@@ -24,15 +27,18 @@ export function ProductItem({ product }: ProductItemProps) {
       },
     })
 
+  const { addProductToCart } = useContext(CartContext)
+
   const amountValue = watch('amount')
 
   function handleAddToCart(data: AddToCartFormData) {
-    const productToAdd = {
+    const productToAdd: CartProduct = {
       ...product,
       amount: data.amount,
     }
 
-    console.log(productToAdd)
+    addProductToCart(productToAdd)
+    reset()
   }
 
   function handleAmount(newAmount: number) {
