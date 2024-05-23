@@ -1,5 +1,6 @@
 import { ReactNode, createContext, useState } from 'react'
 import { Product } from '../@types/product'
+import { toast } from 'react-toastify'
 
 export interface CartProduct extends Product {
   amount: number
@@ -27,6 +28,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
     if (!productAlredyAdded) {
       setCartProducts((state) => [...state, product])
+      toast.success(`${product.amount}x ${product.name} adicionado ao carrinho`)
+    } else {
+      toast.error(`${product.name} já está no carrinho`)
     }
   }
 
