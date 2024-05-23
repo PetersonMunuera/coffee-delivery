@@ -39,6 +39,7 @@ export const HeaderContent = styled.div`
   }
 
   nav a {
+    position: relative;
     background-color: ${(props) => props.theme['yellow-light']};
     color: ${(props) => props.theme['yellow-dark']};
     width: 2.5rem;
@@ -48,5 +49,25 @@ export const HeaderContent = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  nav a span {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: ${(props) => props.theme['yellow-dark']};
+    color: ${(props) => props.theme.white};
+    font-weight: bold;
+    font-size: 0.75rem;
+    line-height: 1.3;
   }
 `
