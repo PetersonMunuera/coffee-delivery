@@ -10,6 +10,7 @@ interface CartContextType {
   cartProducts: CartProduct[]
   addProductToCart: (product: CartProduct) => void
   updateProductAmount: (productId: string, newAmount: number) => void
+  removeProduct: (productId: string) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -35,6 +36,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   }
 
   function updateProductAmount(productId: string, newAmount: number) {
+    if (newAmount < 1) return
+
     const productToUpdateIndex = cartProducts.findIndex(
       (product) => product.id === productId,
     )
@@ -48,9 +51,22 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
   }
 
+  function removeProduct(productId: string) {
+    const productsWithoutRemovedOne = cartProducts.filter(
+      (product) => product.id !== productId,
+    )
+
+    setCartProducts(productsWithoutRemovedOne)
+  }
+
   return (
     <CartContext.Provider
-      value={{ cartProducts, addProductToCart, updateProductAmount }}
+      value={{
+        cartProducts,
+        addProductToCart,
+        updateProductAmount,
+        removeProduct,
+      }}
     >
       {children}
     </CartContext.Provider>

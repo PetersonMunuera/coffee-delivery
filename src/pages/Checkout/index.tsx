@@ -17,6 +17,7 @@ import {
   SelectPaymentContainer,
   SelectPaymentButton,
 } from './styles'
+import { Cart } from './components/Cart'
 
 type PaymentMethodsType = 'CREDIT_CARD' | 'DEBIT_CARD' | 'MONEY'
 
@@ -63,19 +64,19 @@ export function Checkout() {
 
           <SelectPaymentContainer>
             <SelectPaymentButton
-              isSelected={paymentMethod === 'CREDIT_CARD'}
+              selected={paymentMethod === 'CREDIT_CARD'}
               onClick={() => setPaymentMethod('CREDIT_CARD')}
             >
               <CreditCard size={16} /> CARTÃO DE CRÉDITO
             </SelectPaymentButton>
             <SelectPaymentButton
-              isSelected={paymentMethod === 'DEBIT_CARD'}
+              selected={paymentMethod === 'DEBIT_CARD'}
               onClick={() => setPaymentMethod('DEBIT_CARD')}
             >
               <Bank size={16} /> CARTÃO DE DÉBITO
             </SelectPaymentButton>
             <SelectPaymentButton
-              isSelected={paymentMethod === 'MONEY'}
+              selected={paymentMethod === 'MONEY'}
               onClick={() => setPaymentMethod('MONEY')}
             >
               <Money size={16} /> DINHEIRO
@@ -87,7 +88,7 @@ export function Checkout() {
       <section>
         <h1>Cafés selecionados</h1>
 
-        <div>Product List</div>
+        <Cart />
       </section>
     </CheckoutContainer>
   )

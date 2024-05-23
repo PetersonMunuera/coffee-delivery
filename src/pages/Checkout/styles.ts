@@ -114,7 +114,7 @@ export const SelectPaymentContainer = styled.div`
 `
 
 interface SelectPaymentButtonProps {
-  isSelected: boolean
+  selected: boolean
 }
 
 export const SelectPaymentButton = styled.button<SelectPaymentButtonProps>`
@@ -134,7 +134,7 @@ export const SelectPaymentButton = styled.button<SelectPaymentButtonProps>`
   cursor: pointer;
 
   ${(props) => {
-    return props.isSelected
+    return props.selected
       ? css`
           background-color: ${props.theme['purple-light']};
           border-color: ${props.theme.purple};
