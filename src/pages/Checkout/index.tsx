@@ -23,6 +23,7 @@ import {
   SelectPaymentContainer,
   SelectPaymentButton,
 } from './styles'
+import { CartContext } from '../../contexts/CartContext'
 
 const addressFormSchema = z.object({
   zip: z.string().min(1),
@@ -40,7 +41,9 @@ export function Checkout() {
   const { saveDeliveryAddress, paymentMethodSelected, selectPaymentMethod } =
     useContext(CheckoutContext)
 
-  const { register, handleSubmit /* reset */ } = useForm<AddressFormDataType>({
+  const { resetCart } = useContext(CartContext)
+
+  const { register, handleSubmit, reset } = useForm<AddressFormDataType>({
     resolver: zodResolver(addressFormSchema),
   })
 
@@ -49,10 +52,8 @@ export function Checkout() {
   function handleConfirmOrder(data: AddressFormDataType) {
     if (paymentMethodSelected) {
       saveDeliveryAddress(data)
-
-      console.log('saved')
-
-      // reset()
+      resetCart()
+      reset()
       navigate('/success')
     }
   }

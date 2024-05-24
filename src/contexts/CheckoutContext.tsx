@@ -14,7 +14,7 @@ interface AddressData {
 
 interface CheckoutContextType {
   deliveryAddress: AddressData
-  paymentMethodSelected: PaymentMethodsType | undefined
+  paymentMethodSelected: PaymentMethodsType
   selectPaymentMethod: (method: PaymentMethodsType) => void
   saveDeliveryAddress: (address: AddressData) => void
 }
@@ -32,9 +32,8 @@ export function CheckoutContextProvider({
     {} as AddressData,
   )
 
-  const [paymentMethodSelected, setPaymentMethod] = useState<
-    PaymentMethodsType | undefined
-  >(undefined)
+  const [paymentMethodSelected, setPaymentMethod] =
+    useState<PaymentMethodsType>('CREDIT_CARD')
 
   function saveDeliveryAddress(address: AddressData) {
     setDeliveryAddress(address)
