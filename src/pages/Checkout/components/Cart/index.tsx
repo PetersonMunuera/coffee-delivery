@@ -2,6 +2,8 @@ import { useContext } from 'react'
 import {
   AmountHandler,
   CartContainer,
+  CartSummary,
+  ConfirmButton,
   Divider,
   ProductInfo,
   ProductItem,
@@ -58,7 +60,7 @@ export function Cart() {
           )
         })}
       </ProductsList>
-      <footer>
+      <CartSummary>
         <div>
           <span>Total de itens</span>
           <span>R$ 29,70</span>
@@ -71,8 +73,8 @@ export function Cart() {
           <strong>Total</strong>
           <strong>R$ 33,20</strong>
         </div>
-      </footer>
-      <button>CONFIRMAR PEDIDO</button>
+      </CartSummary>
+      <ConfirmButton>CONFIRMAR PEDIDO</ConfirmButton>
     </CartContainer>
   )
 }

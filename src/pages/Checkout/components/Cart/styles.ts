@@ -107,3 +107,42 @@ export const AmountHandler = styled.div`
     min-width: 1.25rem;
   }
 `
+
+export const CartSummary = styled.footer`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    line-height: 1.3;
+  }
+
+  div span:first-child {
+    font-size: 0.875rem;
+  }
+
+  div strong {
+    font-size: 1.25rem;
+    color: ${(props) => props.theme['base-subtitle']};
+  }
+`
+
+export const ConfirmButton = styled.button`
+  background-color: ${(props) => props.theme.yellow};
+  color: ${(props) => props.theme.white};
+  padding: 0.75rem;
+  border: 0;
+  border-radius: 6px;
+
+  font-weight: bold;
+  line-height: 1.6;
+
+  cursor: pointer;
+  transition: background 0.1s linear;
+
+  &:hover {
+    background-color: ${(props) => props.theme['yellow-dark']};
+  }
+`
