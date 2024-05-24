@@ -27,7 +27,7 @@ const addressFormSchema = z.object({
   zip: z.string().min(1),
   street: z.string().min(1),
   number: z.number().min(1),
-  complement: z.string(),
+  complement: z.string().optional(),
   district: z.string().min(1),
   city: z.string().min(1),
   state: z.string().min(1),
@@ -66,11 +66,13 @@ export function Checkout() {
             />
             <input {...register('street')} type="text" placeholder="Rua" />
             <input {...register('number')} type="text" placeholder="Número" />
-            <input
-              {...register('complement')}
-              type="text"
-              placeholder="Complemento"
-            />
+            <div>
+              <input
+                {...register('complement')}
+                type="text"
+                placeholder="Complemento"
+              />
+            </div>
             <input {...register('district')} type="text" placeholder="Bairro" />
             <input {...register('city')} type="text" placeholder="Cidade" />
             <input {...register('state')} type="text" placeholder="UF" />

@@ -71,7 +71,7 @@ export const AddressForm = styled.form`
 
   gap: 1rem 0.75rem;
 
-  input {
+  & > input {
     background-color: ${(props) => props.theme['base-input']};
     border: 1px solid ${(props) => props.theme['base-button']};
     border-radius: 4px;
@@ -79,6 +79,11 @@ export const AddressForm = styled.form`
 
     font-size: 0.875rem;
     line-height: 1.3;
+
+    &::placeholder {
+      opacity: 1;
+      color: ${(props) => props.theme['base-label']};
+    }
 
     &:focus {
       box-shadow: 0 0 0 2px ${(props) => props.theme.yellow};
@@ -94,17 +99,48 @@ export const AddressForm = styled.form`
       grid-area: number;
     }
     &:nth-of-type(4) {
-      grid-area: complement;
-    }
-    &:nth-of-type(5) {
       grid-area: district;
     }
-    &:nth-of-type(6) {
+    &:nth-of-type(5) {
       grid-area: city;
     }
-    &:nth-of-type(7) {
+    &:nth-of-type(6) {
       grid-area: state;
     }
+  }
+
+  div {
+    grid-area: complement;
+    display: flex;
+    background-color: ${(props) => props.theme['base-input']};
+    border: 1px solid ${(props) => props.theme['base-button']};
+    border-radius: 4px;
+    padding: 0.75rem;
+  }
+
+  div:focus-within {
+    box-shadow: 0 0 0 2px ${(props) => props.theme.yellow};
+  }
+
+  div input {
+    flex: 1;
+    background-color: transparent;
+    border: 0;
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+
+  div input::placeholder {
+    opacity: 1;
+    color: ${(props) => props.theme['base-label']};
+  }
+
+  div:after {
+    content: 'Opcional';
+    font-size: 0.75rem;
+    font-style: italic;
+    line-height: 1.3;
+    color: ${(props) => props.theme['base-label']};
   }
 `
 
