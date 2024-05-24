@@ -19,9 +19,18 @@ export function Cart() {
 
   const deliveryTax = 3.5
 
-  const totalValue = cartProducts.reduce((total, product) => {
+  const totalItemsValue = cartProducts.reduce((total, product) => {
     return total + product.amount * product.price
   }, 0)
+
+  const formatter = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  })
+
+  const formattedDeliveryTax = formatter.format(deliveryTax)
+  const formattedTotalItemsValue = formatter.format(totalItemsValue)
+  const formattedTotalValue = formatter.format(totalItemsValue + deliveryTax)
 
   return (
     <CartContainer>
@@ -58,7 +67,7 @@ export function Cart() {
                   </div>
                 </ProductInfo>
                 <strong>
-                  R$ {(product.price * product.amount).toFixed(2)}
+                  {formatter.format(product.price * product.amount)}
                 </strong>
               </ProductItem>
               <Divider />
@@ -69,15 +78,15 @@ export function Cart() {
       <CartSummary>
         <div>
           <span>Total de itens</span>
-          <span>R$ {totalValue.toFixed(2)}</span>
+          <span>{formattedTotalItemsValue}</span>
         </div>
         <div>
           <span>Entrega</span>
-          <span>R$ {deliveryTax.toFixed(2)}</span>
+          <span>{formattedDeliveryTax}</span>
         </div>
         <div>
           <strong>Total</strong>
-          <strong>R$ {(totalValue + deliveryTax).toFixed(2)}</strong>
+          <strong>{formattedTotalValue}</strong>
         </div>
       </CartSummary>
       <ConfirmButton>CONFIRMAR PEDIDO</ConfirmButton>

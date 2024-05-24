@@ -46,6 +46,8 @@ export function ProductItem({ product }: ProductItemProps) {
     setValue('amount', newAmount)
   }
 
+  const formattedPrice = product.price.toFixed(2).replace('.', ',')
+
   return (
     <ProductItemContainer>
       <img src={product.img} alt={`Xícara de café ${product.name}`} />
@@ -58,7 +60,7 @@ export function ProductItem({ product }: ProductItemProps) {
       <p>{product.description}</p>
       <AddToCart>
         <span>
-          R$ <strong>{product.price.toFixed(2)}</strong>
+          R$ <strong>{formattedPrice}</strong>
         </span>
 
         <form onSubmit={handleSubmit(handleAddToCart)}>

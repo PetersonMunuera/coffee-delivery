@@ -18,13 +18,32 @@ import {
   SelectPaymentButton,
 } from './styles'
 import { Cart } from './components/Cart'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 type PaymentMethodsType = 'CREDIT_CARD' | 'DEBIT_CARD' | 'MONEY'
+
+const addressFormSchema = z.object({
+  zip: z.string().min(1),
+  street: z.string().min(1),
+  number: z.number().min(1),
+  complement: z.string(),
+  district: z.string().min(1),
+  city: z.string().min(1),
+  state: z.string().min(1),
+})
+
+type AddressFormDataType = z.infer<typeof addressFormSchema>
 
 export function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState<
     PaymentMethodsType | undefined
   >(undefined)
+
+  const { register } = useForm<AddressFormDataType>({
+    resolver: zodResolver(addressFormSchema),
+  })
 
   return (
     <CheckoutContainer>
@@ -41,13 +60,21 @@ export function Checkout() {
           </header>
 
           <AddressForm>
-            <InputMask mask="99999-999" placeholder="CEP" />
-            <input type="text" placeholder="Rua" />
-            <input type="text" placeholder="Número" />
-            <input type="text" placeholder="Complemento" />
-            <input type="text" placeholder="Bairro" />
-            <input type="text" placeholder="Cidade" />
-            <input type="text" placeholder="UF" />
+            <InputMask
+              {...register('zip')}
+              mask="99999-999"
+              placeholder="CEP"
+            />
+            <input {...register('street')} type="text" placeholder="Rua" />
+            <input {...register('number')} type="text" placeholder="Número" />
+            <input
+              {...register('complement')}
+              type="text"
+              placeholder="Complemento"
+            />
+            <input {...register('district')} type="text" placeholder="Bairro" />
+            <input {...register('city')} type="text" placeholder="Cidade" />
+            <input {...register('state')} type="text" placeholder="UF" />
           </AddressForm>
         </AddressCard>
 
