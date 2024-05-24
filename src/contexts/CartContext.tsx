@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useEffect, useState } from 'react'
 import { Product } from '../@types/product'
 import { toast } from 'react-toastify'
 
@@ -21,7 +21,23 @@ interface CartContextProviderProps {
 }
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cartProducts, setCartProducts] = useState<CartProduct[]>([])
+  const [cartProducts, setCartProducts] = useState<CartProduct[]>(() => {
+    const storedCartProducts = localStorage.getItem(
+      '@coffee-delivery:cart-1.0.0',
+    )
+
+    if (storedCartProducts) {
+      return JSON.parse(storedCartProducts)
+    }
+
+    return []
+  })
+
+  useEffect(() => {
+    const cartProductsJSON = JSON.stringify(cartProducts)
+
+    localStorage.setItem('@coffee-delivery:cart-1.0.0', cartProductsJSON)
+  }, [cartProducts])
 
   function addProductToCart(product: CartProduct) {
     const productAlredyAdded = cartProducts.find(
