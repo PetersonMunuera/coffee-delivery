@@ -1,13 +1,12 @@
+import { useContext } from 'react'
+import { CartContext, CartProduct } from '../../../../contexts/CartContext'
 import { Minus, Plus, ShoppingCart } from '@phosphor-icons/react'
-import { AddToCart, AmountInput, ProductItemContainer, Tags } from './styles'
 import { Product } from '../../../../@types/product'
-
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import zod from 'zod'
-import { useContext } from 'react'
-import { CartContext, CartProduct } from '../../../../contexts/CartContext'
 
+import { AddToCart, AmountInput, ProductItemContainer, Tags } from './styles'
 interface ProductItemProps {
   product: Product
 }

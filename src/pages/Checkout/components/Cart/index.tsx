@@ -1,4 +1,7 @@
 import { useContext } from 'react'
+import { CartContext } from '../../../../contexts/CartContext'
+import { Minus, Plus, Trash } from '@phosphor-icons/react'
+
 import {
   AmountHandler,
   CartContainer,
@@ -10,8 +13,6 @@ import {
   ProductsList,
   RemoveButton,
 } from './styles'
-import { CartContext } from '../../../../contexts/CartContext'
-import { Minus, Plus, Trash } from '@phosphor-icons/react'
 
 export function Cart() {
   const { cartProducts, updateProductAmount, removeProduct } =

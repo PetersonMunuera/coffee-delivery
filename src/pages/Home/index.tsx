@@ -1,4 +1,7 @@
 import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react'
+import { ProductItem } from './components/ProductItem'
+import { products } from './products.data'
+
 import coffeeMainImg from '../../assets/coffee-main.png'
 import {
   InfoSection,
@@ -7,8 +10,6 @@ import {
   Benefit,
   CoffeeSection,
 } from './styles'
-import { ProductItem } from './components/ProductItem'
-import { products } from './products.data'
 
 export function Home() {
   return (

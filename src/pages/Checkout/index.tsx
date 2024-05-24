@@ -1,4 +1,9 @@
 import { useState } from 'react'
+import { Cart } from './components/Cart'
+import InputMask from 'react-input-mask'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Bank,
   CreditCard,
@@ -6,8 +11,6 @@ import {
   MapPinLine,
   Money,
 } from '@phosphor-icons/react'
-
-import InputMask from 'react-input-mask'
 
 import {
   AddressCard,
@@ -17,10 +20,6 @@ import {
   SelectPaymentContainer,
   SelectPaymentButton,
 } from './styles'
-import { Cart } from './components/Cart'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
 
 type PaymentMethodsType = 'CREDIT_CARD' | 'DEBIT_CARD' | 'MONEY'
 
