@@ -17,6 +17,12 @@ export function Cart() {
   const { cartProducts, updateProductAmount, removeProduct } =
     useContext(CartContext)
 
+  const deliveryTax = 3.5
+
+  const totalValue = cartProducts.reduce((total, product) => {
+    return total + product.amount * product.price
+  }, 0)
+
   return (
     <CartContainer>
       <ProductsList>
@@ -63,15 +69,15 @@ export function Cart() {
       <CartSummary>
         <div>
           <span>Total de itens</span>
-          <span>R$ 29,70</span>
+          <span>R$ {totalValue.toFixed(2)}</span>
         </div>
         <div>
           <span>Entrega</span>
-          <span>R$ 3,50</span>
+          <span>R$ {deliveryTax.toFixed(2)}</span>
         </div>
         <div>
           <strong>Total</strong>
-          <strong>R$ 33,20</strong>
+          <strong>R$ {(totalValue + deliveryTax).toFixed(2)}</strong>
         </div>
       </CartSummary>
       <ConfirmButton>CONFIRMAR PEDIDO</ConfirmButton>
