@@ -1,3 +1,14 @@
+import { useContext } from 'react'
+import { CheckoutContext } from '../../contexts/CheckoutContext'
+
 export function Success() {
-  return <h1>Success</h1>
+  const { deliveryAddress, paymentMethodSelected } = useContext(CheckoutContext)
+
+  return (
+    <div>
+      <pre>{JSON.stringify(deliveryAddress, null, 2)}</pre>
+
+      <span>{paymentMethodSelected}</span>
+    </div>
+  )
 }

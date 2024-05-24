@@ -11,6 +11,7 @@ interface CartContextType {
   addProductToCart: (product: CartProduct) => void
   updateProductAmount: (productId: string, newAmount: number) => void
   removeProduct: (productId: string) => void
+  resetCart: () => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -59,6 +60,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     setCartProducts(productsWithoutRemovedOne)
   }
 
+  function resetCart() {
+    setCartProducts([])
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -66,6 +71,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         addProductToCart,
         updateProductAmount,
         removeProduct,
+        resetCart,
       }}
     >
       {children}

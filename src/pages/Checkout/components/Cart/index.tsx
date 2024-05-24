@@ -90,7 +90,9 @@ export function Cart() {
           <strong>{formattedTotalValue}</strong>
         </div>
       </CartSummary>
-      <ConfirmButton>CONFIRMAR PEDIDO</ConfirmButton>
+      <ConfirmButton type="submit" form="address-form">
+        CONFIRMAR PEDIDO
+      </ConfirmButton>
     </CartContainer>
   )
 }

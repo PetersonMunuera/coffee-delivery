@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import { Cart } from './components/Cart'
 import InputMask from 'react-input-mask'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from 'react-router-dom'
+import { CheckoutContext } from '../../contexts/CheckoutContext'
+
 import {
   Bank,
   CreditCard,
@@ -21,28 +24,38 @@ import {
   SelectPaymentButton,
 } from './styles'
 
-type PaymentMethodsType = 'CREDIT_CARD' | 'DEBIT_CARD' | 'MONEY'
-
 const addressFormSchema = z.object({
   zip: z.string().min(1),
   street: z.string().min(1),
-  number: z.number().min(1),
+  number: z.string().min(1),
   complement: z.string().optional(),
   district: z.string().min(1),
   city: z.string().min(1),
   state: z.string().min(1),
 })
 
-type AddressFormDataType = z.infer<typeof addressFormSchema>
+export type AddressFormDataType = z.infer<typeof addressFormSchema>
 
 export function Checkout() {
-  const [paymentMethod, setPaymentMethod] = useState<
-    PaymentMethodsType | undefined
-  >(undefined)
+  const { saveDeliveryAddress, paymentMethodSelected, selectPaymentMethod } =
+    useContext(CheckoutContext)
 
-  const { register } = useForm<AddressFormDataType>({
+  const { register, handleSubmit /* reset */ } = useForm<AddressFormDataType>({
     resolver: zodResolver(addressFormSchema),
   })
+
+  const navigate = useNavigate()
+
+  function handleConfirmOrder(data: AddressFormDataType) {
+    if (paymentMethodSelected) {
+      saveDeliveryAddress(data)
+
+      console.log('saved')
+
+      // reset()
+      navigate('/success')
+    }
+  }
 
   return (
     <CheckoutContainer>
@@ -58,7 +71,10 @@ export function Checkout() {
             </div>
           </header>
 
-          <AddressForm>
+          <AddressForm
+            id="address-form"
+            onSubmit={handleSubmit(handleConfirmOrder)}
+          >
             <InputMask
               {...register('zip')}
               mask="99999-999"
@@ -92,20 +108,20 @@ export function Checkout() {
 
           <SelectPaymentContainer>
             <SelectPaymentButton
-              selected={paymentMethod === 'CREDIT_CARD'}
-              onClick={() => setPaymentMethod('CREDIT_CARD')}
+              selected={paymentMethodSelected === 'CREDIT_CARD'}
+              onClick={() => selectPaymentMethod('CREDIT_CARD')}
             >
               <CreditCard size={16} /> CARTÃO DE CRÉDITO
             </SelectPaymentButton>
             <SelectPaymentButton
-              selected={paymentMethod === 'DEBIT_CARD'}
-              onClick={() => setPaymentMethod('DEBIT_CARD')}
+              selected={paymentMethodSelected === 'DEBIT_CARD'}
+              onClick={() => selectPaymentMethod('DEBIT_CARD')}
             >
               <Bank size={16} /> CARTÃO DE DÉBITO
             </SelectPaymentButton>
             <SelectPaymentButton
-              selected={paymentMethod === 'MONEY'}
-              onClick={() => setPaymentMethod('MONEY')}
+              selected={paymentMethodSelected === 'MONEY'}
+              onClick={() => selectPaymentMethod('MONEY')}
             >
               <Money size={16} /> DINHEIRO
             </SelectPaymentButton>
